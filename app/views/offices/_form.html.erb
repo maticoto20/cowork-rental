@@ -2,6 +2,7 @@
   <h1>Create a new office</h1>
   <%= simple_form_for @office do |f| %>
   <%= f.input :name %>
+  <%= f.input :address %>
   <%= f.input :price, input_html: { min: 0, max: 5000 } %>
   <%= f.input :workspace_type %>
   <%= f.input :number_of_seats, input_html: { min: 0, max: 500 } %>
