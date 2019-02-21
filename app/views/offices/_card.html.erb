@@ -1,14 +1,14 @@
 <%= link_to office_path(office), class:"office-card-link" do %>
-<div class="office-card">
-  <div class="card-img" style="background-image: linear-gradient(-200deg, rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.6) 70%), url(<%= asset_path('office_placeholder') %>);">
-    <h3 class="title"><% office.name.split(" ").each do |word| %>
-     <%= word.capitalize + " "%>
-     <% end %>
-   </h3>
+  <div class="office-card">
+    <div class="card-img" style="background-image: linear-gradient(-200deg, rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.6) 70%), url(<%= asset_path('office_placeholder') %>);">
+      <h3 class="title"><% office.name.split(" ").each do |word| %>
+      <%= word.capitalize + " "%>
+      <% end %>
+    </h3>
+    </div>
+    <div class="card-description">
+      <p class="desc"><%= office.workspace_type %>, <%= office.number_of_seats %> seat</p>
+      <p class="price">$<%= office.price %>/day</p>
+    </div>
   </div>
-  <div class="card-description">
-    <p class="desc"><%= office.workspace_type %>, <%= office.number_of_seats %> seat</p>
-    <p class="price">$<%= office.price %>/day</p>
-  </div>
-</div>
 <% end %>

@@ -7,7 +7,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
+    @booking.start_date = booking_params["start_date"].split(" to ").first
+    @booking.end_date = booking_params["start_date"].split(" to ").last
     authorize @booking
     @booking.office = @office
     @booking.user = current_user
@@ -24,7 +26,10 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @booking.update(booking_params)
+    @booking.start_date = booking_params["start_date"].split(" to ").first
+    @booking.end_date = booking_params["start_date"].split(" to ").last
+    @booking.save
+
 
     return redirect_to bookings_path if @booking.save && current_user != @booking.user
     return redirect_to owner_bookings_path if @booking.save
