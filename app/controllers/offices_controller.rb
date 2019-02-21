@@ -16,7 +16,12 @@ class OfficesController < ApplicationController
   end
 
   def index
-    @offices = policy_scope(Office).order(created_at: :desc)
+    if params[:search]
+      @offices = policy_scope(Office).search_by_name_and_worspace_type(params[:search])
+    else
+      @offices = policy_scope(Office).order(created_at: :desc)
+    end
+
     @markers = @offices.map do |office|
       {
         lng: office.longitude,

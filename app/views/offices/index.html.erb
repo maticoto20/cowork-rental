@@ -3,27 +3,9 @@
     <%= link_to '+ Add new office', new_office_path %>
     <div class="row">
       <% @offices.each do |office| %>
-      <div class="col-xs-4">
-        <%= link_to office_path(office), class:"office-card-link" do %>
-        <div class="office-card">
-          <% if office.photo.filename %>
-          <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path office.photo, height: 300, width: 400, crop: :fill %>')">
-            <% else %>
-            <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://res.cloudinary.com/dy3nldgkf/image/upload/v1550694549/yjljvnqgein5027osqiq.png')">
-              <% end %>
-              <h3 class="title"><% office.name.split(" ").each do |word| %>
-               <%= word.capitalize + " "%>
-               <% end %>
-             </h3>
-           </div>
-           <div class="card-description">
-            <p class="desc"><%= office.workspace_type %>, <%= office.number_of_seats %> seat</p>
-            <p class="price">$<%= office.price %>/day</p>
-            <p><%= office.reviews.map { |review| review.rating }.sum / office.reviews.count.to_f %></p>
-          </div>
+        <div class="col-xs-4">
+          <%= render "offices/card", office: office %>
         </div>
-        <% end %>
-      </div>
       <% end %>
     </div>
   </div>

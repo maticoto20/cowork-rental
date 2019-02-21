@@ -1,3 +1,6 @@
 <h1>New booking</h1>
 <%= render 'form' %>
 <%= link_to 'Cancel', office_path(@office) %>
+
+<span style='display: none;' id='day-price'><%= @office.price %></span>
+<p>Price: $<span id='total-price'>0</span></p>
